@@ -11,6 +11,10 @@
 		61EBF07A292D089300E83F07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF079292D089300E83F07 /* ContentView.swift */; };
 		61EBF07C292D089400E83F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61EBF07B292D089400E83F07 /* Assets.xcassets */; };
 		61EBF07F292D089400E83F07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61EBF07E292D089400E83F07 /* Preview Assets.xcassets */; };
+		61EBF086292D08C600E83F07 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF085292D08C600E83F07 /* GameScene.swift */; };
+		61EBF088292D08F500E83F07 /* ParticleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF087292D08F500E83F07 /* ParticleProtocol.swift */; };
+		61EBF08A292D090100E83F07 /* ParticleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF089292D090100E83F07 /* ParticleModels.swift */; };
+		61EBF08C292D099F00E83F07 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF08B292D099F00E83F07 /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		61EBF079292D089300E83F07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		61EBF07B292D089400E83F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61EBF07E292D089400E83F07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		61EBF085292D08C600E83F07 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		61EBF087292D08F500E83F07 /* ParticleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleProtocol.swift; sourceTree = "<group>"; };
+		61EBF089292D090100E83F07 /* ParticleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleModels.swift; sourceTree = "<group>"; };
+		61EBF08B292D099F00E83F07 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			children = (
 				61EBF077292D089300E83F07 /* TreeSpriteKitTestingApp.swift */,
 				61EBF079292D089300E83F07 /* ContentView.swift */,
+				61EBF08B292D099F00E83F07 /* GameViewModel.swift */,
+				61EBF085292D08C600E83F07 /* GameScene.swift */,
+				61EBF087292D08F500E83F07 /* ParticleProtocol.swift */,
+				61EBF089292D090100E83F07 /* ParticleModels.swift */,
 				61EBF07B292D089400E83F07 /* Assets.xcassets */,
 				61EBF07D292D089400E83F07 /* Preview Content */,
 			);
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61EBF08C292D099F00E83F07 /* GameViewModel.swift in Sources */,
+				61EBF086292D08C600E83F07 /* GameScene.swift in Sources */,
+				61EBF08A292D090100E83F07 /* ParticleModels.swift in Sources */,
 				61EBF07A292D089300E83F07 /* ContentView.swift in Sources */,
 				61EBF078292D089300E83F07 /* TreeSpriteKitTestingApp.swift in Sources */,
+				61EBF088292D08F500E83F07 /* ParticleProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +211,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +265,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -275,6 +291,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +321,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
