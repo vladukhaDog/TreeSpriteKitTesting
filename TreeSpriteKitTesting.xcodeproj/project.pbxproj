@@ -84,6 +84,15 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		61B58992292E5C640003C37E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				61EBF087292D08F500E83F07 /* ParticleProtocol.swift */,
+				61EBF089292D090100E83F07 /* ParticleModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		61EBF06B292D089300E83F07 = {
 			isa = PBXGroup;
 			children = (
@@ -109,8 +118,7 @@
 				61B5898E292E4CA70003C37E /* GameView */,
 				61B58990292E4D390003C37E /* Extensions */,
 				61B58991292E4D430003C37E /* Scenes */,
-				61EBF087292D08F500E83F07 /* ParticleProtocol.swift */,
-				61EBF089292D090100E83F07 /* ParticleModels.swift */,
+				61B58992292E5C640003C37E /* Models */,
 				61EBF07B292D089400E83F07 /* Assets.xcassets */,
 				61EBF07D292D089400E83F07 /* Preview Content */,
 			);
