@@ -21,13 +21,12 @@ class BackgroundScene: SKScene {
         physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsWorld.gravity.dy = -0.2
         self.particle = LeafParticle() //SnowParticle()
-        Timer.publish(every: 1, on: .main, in: .common)
-            .autoconnect()
-            .sink {[weak self] _ in
-                self?.create()
-                self?.create()
-            }
-            .store(in: &cancellable)
+        let wait = SKAction.wait(forDuration: 1)
+        let create = SKAction.run {[weak self] in
+            self?.create()
+            self?.create()
+        }
+        self.run(.repeatForever(.sequence([wait, create])))
     }
     
     deinit{

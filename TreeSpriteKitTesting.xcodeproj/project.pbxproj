@@ -10,8 +10,9 @@
 		61B58986292E024E0003C37E /* BackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B58985292E024E0003C37E /* BackgroundScene.swift */; };
 		61B58988292E17050003C37E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B58987292E17050003C37E /* MapView.swift */; };
 		61B5898A292E170D0003C37E /* MyTreesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B58989292E170D0003C37E /* MyTreesView.swift */; };
+		61B5898D292E4C9E0003C37E /* Double + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5898C292E4C9E0003C37E /* Double + extension.swift */; };
 		61EBF078292D089300E83F07 /* TreeSpriteKitTestingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF077292D089300E83F07 /* TreeSpriteKitTestingApp.swift */; };
-		61EBF07A292D089300E83F07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF079292D089300E83F07 /* ContentView.swift */; };
+		61EBF07A292D089300E83F07 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF079292D089300E83F07 /* GameView.swift */; };
 		61EBF07C292D089400E83F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61EBF07B292D089400E83F07 /* Assets.xcassets */; };
 		61EBF07F292D089400E83F07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61EBF07E292D089400E83F07 /* Preview Assets.xcassets */; };
 		61EBF086292D08C600E83F07 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBF085292D08C600E83F07 /* GameScene.swift */; };
@@ -24,9 +25,11 @@
 		61B58985292E024E0003C37E /* BackgroundScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundScene.swift; sourceTree = "<group>"; };
 		61B58987292E17050003C37E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		61B58989292E170D0003C37E /* MyTreesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTreesView.swift; sourceTree = "<group>"; };
+		61B5898B292E23900003C37E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		61B5898C292E4C9E0003C37E /* Double + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + extension.swift"; sourceTree = "<group>"; };
 		61EBF074292D089300E83F07 /* TreeSpriteKitTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeSpriteKitTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EBF077292D089300E83F07 /* TreeSpriteKitTestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeSpriteKitTestingApp.swift; sourceTree = "<group>"; };
-		61EBF079292D089300E83F07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		61EBF079292D089300E83F07 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		61EBF07B292D089400E83F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61EBF07E292D089400E83F07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		61EBF085292D08C600E83F07 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -46,6 +49,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61B5898E292E4CA70003C37E /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				61EBF079292D089300E83F07 /* GameView.swift */,
+				61EBF08B292D099F00E83F07 /* GameViewModel.swift */,
+			);
+			path = GameView;
+			sourceTree = "<group>";
+		};
+		61B5898F292E4D2D0003C37E /* DEPRECATEDVIEWS */ = {
+			isa = PBXGroup;
+			children = (
+				61B58989292E170D0003C37E /* MyTreesView.swift */,
+				61B58987292E17050003C37E /* MapView.swift */,
+			);
+			path = DEPRECATEDVIEWS;
+			sourceTree = "<group>";
+		};
+		61B58990292E4D390003C37E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				61B5898C292E4C9E0003C37E /* Double + extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		61B58991292E4D430003C37E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				61EBF085292D08C600E83F07 /* GameScene.swift */,
+				61B58985292E024E0003C37E /* BackgroundScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		61EBF06B292D089300E83F07 = {
 			isa = PBXGroup;
 			children = (
@@ -65,13 +103,12 @@
 		61EBF076292D089300E83F07 /* TreeSpriteKitTesting */ = {
 			isa = PBXGroup;
 			children = (
+				61B5898B292E23900003C37E /* Info.plist */,
 				61EBF077292D089300E83F07 /* TreeSpriteKitTestingApp.swift */,
-				61B58989292E170D0003C37E /* MyTreesView.swift */,
-				61B58987292E17050003C37E /* MapView.swift */,
-				61EBF079292D089300E83F07 /* ContentView.swift */,
-				61EBF08B292D099F00E83F07 /* GameViewModel.swift */,
-				61EBF085292D08C600E83F07 /* GameScene.swift */,
-				61B58985292E024E0003C37E /* BackgroundScene.swift */,
+				61B5898F292E4D2D0003C37E /* DEPRECATEDVIEWS */,
+				61B5898E292E4CA70003C37E /* GameView */,
+				61B58990292E4D390003C37E /* Extensions */,
+				61B58991292E4D430003C37E /* Scenes */,
 				61EBF087292D08F500E83F07 /* ParticleProtocol.swift */,
 				61EBF089292D090100E83F07 /* ParticleModels.swift */,
 				61EBF07B292D089400E83F07 /* Assets.xcassets */,
@@ -164,7 +201,8 @@
 				61B5898A292E170D0003C37E /* MyTreesView.swift in Sources */,
 				61EBF086292D08C600E83F07 /* GameScene.swift in Sources */,
 				61EBF08A292D090100E83F07 /* ParticleModels.swift in Sources */,
-				61EBF07A292D089300E83F07 /* ContentView.swift in Sources */,
+				61B5898D292E4C9E0003C37E /* Double + extension.swift in Sources */,
+				61EBF07A292D089300E83F07 /* GameView.swift in Sources */,
 				61EBF078292D089300E83F07 /* TreeSpriteKitTestingApp.swift in Sources */,
 				61EBF088292D08F500E83F07 /* ParticleProtocol.swift in Sources */,
 			);
@@ -298,11 +336,12 @@
 				DEVELOPMENT_TEAM = FL98HY8592;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TreeSpriteKitTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,9 +350,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = itpw.TreeSpriteKitTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -328,11 +370,12 @@
 				DEVELOPMENT_TEAM = FL98HY8592;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TreeSpriteKitTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -341,9 +384,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = itpw.TreeSpriteKitTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

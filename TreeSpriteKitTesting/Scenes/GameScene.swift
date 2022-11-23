@@ -30,6 +30,7 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         create(touches)
     }
+    
     //MARK: - Логика рисовки
     ///рисует партикл на экране на месте первого нажатия
     func create(_ touches: Set<UITouch>){
