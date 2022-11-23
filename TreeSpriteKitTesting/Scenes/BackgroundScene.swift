@@ -47,10 +47,12 @@ class BackgroundScene: SKScene {
             let box = SKSpriteNode(imageNamed: particle.sprite)
             ///ставим ему отображаемый размер
             box.size = particle.size
-            
+            ///распыляем по горизонтали
             let x = CGFloat((0...Int(self.size.width)).randomElement() ?? 0)
-            let y = self.size.height + CGFloat((80...120).randomElement() ?? 0)
+            let height = Int(box.size.height)
+            let y = self.size.height + CGFloat(((height + 10)...(height + 20)).randomElement() ?? 0)
             box.position = .init(x: x, y: y)
+            ///рандомно разворачиваем
             box.zRotation = CGFloat((0...360).randomElement() ?? 0)
             ///Создаем физические свойства
             
@@ -68,11 +70,13 @@ class BackgroundScene: SKScene {
             if !particle.collidesWithOtherParticles{
                 box.physicsBody?.collisionBitMask = 0
             }
+            ///распыляем по горизонтали во время движения
             let left = Bool.random()
-            let move = SKAction.applyImpulse(.init(dx: left ? 1 : -1, dy: 0), duration: 0.2)//applyForce(.init(dx: Bool.random() ? 1 : -1, dy: 0), duration: 1)
+            let move = SKAction.applyImpulse(.init(dx: left ? 1 : -1, dy: 0), duration: 0.2)
             let stop = SKAction.applyImpulse(.init(dx: left ? -1 : 1, dy: 0), duration: 0.4)
+            let startRotation = SKAction.rotate(byAngle: left ? -5 : 5, duration: 8)
             let wait = SKAction.wait(forDuration: Double.random(in: 1...3))
-            
+            box.run(startRotation)
             let sequence = SKAction.sequence([move, wait, stop, wait])
             box.run(sequence)
             ///Добавляем объект в сцену
