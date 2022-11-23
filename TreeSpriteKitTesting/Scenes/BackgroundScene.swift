@@ -80,7 +80,9 @@ class BackgroundScene: SKScene {
             let sequence = SKAction.sequence([move, wait, stop, wait])
             box.run(sequence)
             ///Добавляем объект в сцену
-            addChild(box)
+            
+                addChild(box)
+            
             ///В зависимости от настроек, вызываем пропадание объекта из сцены
             DispatchQueue.main.asyncAfter(deadline: .now() + particle.secondsToDissapear) {[box] in
                 box.run(.fadeOut(withDuration: 1)) {

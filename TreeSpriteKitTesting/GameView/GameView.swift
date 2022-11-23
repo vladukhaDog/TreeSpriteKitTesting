@@ -44,6 +44,7 @@ struct GameView: View {
     }
     private var tree: some View{
         VStack(spacing: 0){
+            Spacer()
             Image("tree")
                 .resizable()
                 .scaledToFit()
@@ -55,6 +56,7 @@ struct GameView: View {
                 .clipped()
                 .offset(x: 0, y: -10)
                 .zIndex(1)
+                .ignoresSafeArea(.container, edges: .bottom)
         }.offset(x: 0, y: 20)
     }
     
@@ -132,6 +134,7 @@ struct GameView: View {
                                     lineWidth: 5
                                 )
                                 .rotationEffect(.degrees(-90))
+                                .shadow(radius: 5)
                         }
                         .overlay(
                             Image(particle.sprite)
@@ -155,22 +158,30 @@ struct GameView: View {
                         Button {
                             vm.selectedParticle = particle
                         } label: {
-                            Image(particle.sprite).resizable().scaledToFit().padding(5)
-                                .overlay(
+                            Image(particle.sprite).resizable().scaledToFit().padding(8)
+                                .background(
                                     Group{
-                                        if selected{
-                                            Circle().stroke(Color.yellow, lineWidth: 3)
-                                        }
+                                        
+                                            Circle().fill(Color.white)
+                                                .blur(radius: 2)
+                                                .shadow(radius: 6)
+                                                .opacity(selected ? 1 : 0)
+                                        
                                     }
                                 )
                         }
                     }
-                    .frame(width: 45,height: 45)
+                    .frame(width: 60,height: 60)
                     
                 }
             }
             .padding(10)
         }
+        .cornerRadius(30)
+        .background(Color(UIColor.white).cornerRadius(30)
+            .ignoresSafeArea(.container, edges: .bottom)
+            .opacity(0.95)
+            )
         
     }
 }

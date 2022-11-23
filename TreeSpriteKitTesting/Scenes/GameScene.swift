@@ -86,7 +86,9 @@ class GameScene: SKScene {
             }
             
             ///Добавляем объект в сцену
-            addChild(box)
+//            DispatchQueue.main.async {[weak self] in
+                addChild(box)
+//            }
             ///В зависимости от настроек, вызываем пропадание объекта из сцены
             DispatchQueue.main.asyncAfter(deadline: .now() + particle.secondsToDissapear) {[box] in
                 box.run(.fadeOut(withDuration: 0.2)) {
