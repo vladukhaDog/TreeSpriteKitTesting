@@ -140,7 +140,7 @@ struct GameView: View {
                                 .padding(5)
                         )
                     }
-                    .frame(height: 40)
+                    .frame(width: 45,height: 45)
                 }
             }
         }
@@ -155,8 +155,7 @@ struct GameView: View {
                         Button {
                             vm.selectedParticle = particle
                         } label: {
-                            Circle().foregroundColor(.gray)
-                                .overlay(Image(particle.sprite))
+                            Image(particle.sprite).resizable().scaledToFit().padding(5)
                                 .overlay(
                                     Group{
                                         if selected{
@@ -166,12 +165,13 @@ struct GameView: View {
                                 )
                         }
                     }
+                    .frame(width: 45,height: 45)
                     
                 }
             }
             .padding(10)
         }
-        .frame(maxHeight: 100)
+        
     }
 }
 
