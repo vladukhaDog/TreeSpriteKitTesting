@@ -10,13 +10,15 @@ import SwiftUI
 import Combine
 ///Список всех партиклов
 let allParticles: [Particle] = [WaterParticle(), FertilizeParticle()]
-
+let backgroundParticles: [Particle] = [LeafParticle(), SnowParticle()]
 class GameViewModel: ObservableObject{
     ///Выбранный партикл
     @Published var selectedParticle: (Particle)? = WaterParticle()
     ///список активных статусов и их оставшийся процент
     @Published var stats: [String: Double] = [:]
     
+    ///Падающий на фоне партикл
+    @Published var backgroundFallingParticle: Particle = LeafParticle()
     private var cancellable = Set<AnyCancellable>()
     
     ///игровая сцена
@@ -28,11 +30,25 @@ class GameViewModel: ObservableObject{
         return scene
     }()
     
+    ///игровая сцена
+    var backgroundScene: BackgroundScene = {
+        let scene = BackgroundScene()
+        
+        scene.scaleMode = .aspectFit
+        
+        return scene
+    }()
+    
     init(){
         //при выборе партикла вызываем апдейт сцены
         self.$selectedParticle
             .sink { [weak self] _ in
                 self?.update()
+            }
+            .store(in: &cancellable)
+        self.$backgroundFallingParticle
+            .sink { [weak self] _ in
+                self?.updateBackground()
             }
             .store(in: &cancellable)
         
@@ -89,6 +105,14 @@ class GameViewModel: ObservableObject{
         DispatchQueue.main.async {
             self.scene.particle = self.selectedParticle
             self.scene.addedParticleCompletionHandler = self.particleWasAdded(_:)
+        }
+        
+    }
+    
+    ///обновляет сцену под новые данные(партиклы)
+    func updateBackground(){
+        DispatchQueue.main.async {
+            self.backgroundScene.particle = self.backgroundFallingParticle
         }
         
     }

@@ -44,3 +44,47 @@ struct FertilizeParticle: Particle{
     var spreadMultiplier: Int = 3
     var collidesWithOtherParticles: Bool = false
 }
+
+struct LeafParticle: Particle{
+    var id: String = "3"
+    
+    var sprite: String = "leaf"
+    
+    var hasPhysics: Bool = true
+    
+    var secondsToDissapear: Double = 7
+    
+    var delayBeforePhysics: Double = 0
+    
+    var size: CGSize = .init(width: 30, height: 30)
+    
+    var barColor: Color = .clear
+    
+    var percentToAddPerParticle: Double = 0.0
+    var maxAmount: Int = 1
+    var percentToRemovePerSecond: Double = 0.0
+    var collidesWithOtherParticles: Bool = false
+    
+}
+
+struct SnowParticle: Particle{
+    var id: String = "4"
+    
+    var sprite: String = "snowflake"
+    
+    var hasPhysics: Bool = true
+    
+    var secondsToDissapear: Double = 7
+    
+    var delayBeforePhysics: Double = 0
+    
+    var size: CGSize = .init(width: 30, height: 30)
+    
+    var barColor: Color = .clear
+    
+    var percentToAddPerParticle: Double = 0.0
+    
+    var percentToRemovePerSecond: Double = 0.0
+    var collidesWithOtherParticles: Bool = false
+    
+}

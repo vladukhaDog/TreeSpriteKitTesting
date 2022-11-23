@@ -11,7 +11,23 @@ import SwiftUI
 struct TreeSpriteKitTestingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ContentView()
+                    .tabItem {
+                        Image(systemName: "tree.circle")
+                        Text("Tree")
+                    }
+                MapView()
+                    .tabItem {
+                        Image(systemName: "map")
+                        Text("Map")
+                    }
+                MyTreesView()
+                    .tabItem {
+                        Image(systemName: "list.bullet.clipboard")
+                        Text("My Trees")
+                    }
+            }
         }
     }
 }

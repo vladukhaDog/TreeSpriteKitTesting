@@ -13,15 +13,36 @@ struct ContentView: View {
     
 
         var body: some View {
-            VStack{
+            
                 ZStack{
-                    Image("tree")
-                        .resizable()
-                        .scaledToFit()
+                    
+                    SpriteView(scene: vm.backgroundScene, options: [.allowsTransparency])
+                                .transition(.opacity)
+//                                .ignoresSafeArea(.container, edges: .top)
+                                .background(GeometryReader{geo in
+                                    Color.clear
+                                        .onAppear{
+                                            vm.backgroundScene.size = geo.size
+                                        }
+                                })
+                                .blur(radius: 1)
+                                .ignoresSafeArea(.container, edges: .top)
+                    VStack(spacing: 0){
+                        Image("tree")
+                            .resizable()
+                            .scaledToFit()
+                            .zIndex(2)
+                            .offset(x: 0, y: 10)
+                        Color(UIColor.brown)
+                            .frame(height: 200)
+                            .overlay(Image("grass").resizable().scaledToFill())
+                            .clipped()
+                            .offset(x: 0, y: -10)
+                            .zIndex(1)
+                    }.offset(x: 0, y: 20)
                   
                     if vm.selectedParticle != nil{
                         SpriteView(scene: vm.scene, options: [.allowsTransparency])
-                                    .frame(width: 400, height: 700)
                                     .transition(.opacity)
                                     .background(GeometryReader{geo in
                                         Color.clear
@@ -32,63 +53,122 @@ struct ContentView: View {
                     }
                             
                 }
-                .overlay(VStack{
-                    VStack{
-                        ForEach(vm.stats.map({$0.key}), id: \.self){key in
-                            if let value = vm.stats[key],
-                                let particle = allParticles.first(where: {$0.id == key}){
-                                HStack{
-                                    Image(particle.sprite)
-                                    
-                                    GeometryReader{geo in
-                                        HStack{
-                                            particle.barColor
-                                                .frame(width: max(geo.size.width * (value / 100), 0.01))
-                                                .clipShape(Capsule())
-                                            Spacer()
-                                        }
-                                    }
-                                        .frame(height: 30)
-                                    
-                                }
-                            }
-                        }
-                    }
-                    .animation(.default, value: vm.stats)
-                    Spacer()
-                })
-                ScrollView(.horizontal){
-                    HStack{
-                        ForEach(allParticles, id: \.id){particle in
-                            Group{
-                                let selected = particle.sprite == vm.selectedParticle?.sprite
-//                                let amountAlreadyAdded = vm.stats[particle.id] ?? 0
-//                                let canSelect = amountAlreadyAdded <= particle.maxPercentToUse
-                                    Button {
-                                        vm.selectedParticle = particle
-                                    } label: {
-                                        Circle().foregroundColor(.gray)
-                                            .overlay(Image(particle.sprite))
-                                            .overlay(
-                                                Group{
-                                                    if selected{
-                                                        Circle().stroke(Color.yellow, lineWidth: 3)
-                                                    }
-                                                }
-                                            )
-                                    }
-//                                    .disabled(canSelect)
-//                                    .opacity(canSelect ? 0.7 : 1)
-                            }
-                                
-                        }
-                    }
-                    .padding(10)
-                }
-                .frame(height: 100)
-            }
+                .overlay(overlayControls)
+                .background(
+                    Image("background")
+                        .resizable()
+                        .scaledToFill()
+                        .ignoresSafeArea()
+                        .blur(radius: 4)
+                )
+            
             
         }
+    
+    private var overlayControls: some View{
+        VStack{
+            HStack{
+                backgroundParticlesSelection
+
+                Spacer()
+                activeStatuses
+                
+            }
+            .animation(.default, value: vm.stats)
+            .padding()
+            Spacer()
+            touchParticleSelector
+        }
+    }
+    
+    private var backgroundParticlesSelection: some View{
+        HStack{
+            ForEach(backgroundParticles, id: \.id){particle in
+                Group{
+                    let selected = particle.sprite == vm.backgroundFallingParticle.sprite
+                        Button {
+                            vm.backgroundFallingParticle = particle
+                        } label: {
+                            Image(particle.sprite)
+                                .resizable()
+                                .scaledToFit()
+                                .padding(5)
+                                .frame(width: 40, height: 40)
+                                .padding(5)
+                                .overlay(
+                                    Group{
+                                        if selected{
+                                            Circle().stroke(Color.yellow, lineWidth: 3)
+                                        }
+                                    }
+                                )
+                        }
+                }
+                    
+            }
+        }
+    }
+    
+    private var activeStatuses: some View{
+        HStack{
+            ForEach(vm.stats.map({$0.key}), id: \.self){key in
+                if let value = vm.stats[key],
+                    let particle = allParticles.first(where: {$0.id == key}){
+                    HStack{
+                        ZStack{
+                            Circle()
+                                .stroke(
+                                    particle.barColor.opacity(0.2),
+                                    lineWidth: 5
+                                )
+                            Circle()
+                                .trim(from: 0, to: value/100)
+                                .stroke(
+                                    particle.barColor,
+                                    lineWidth: 5
+                                )
+                                .rotationEffect(.degrees(-90))
+                        }
+                            .overlay(
+                                Image(particle.sprite)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .padding(5)
+                            )
+                    }
+                    .frame(height: 40)
+                }
+            }
+        }
+    }
+    
+    private var touchParticleSelector: some View{
+        ScrollView(.horizontal){
+            HStack{
+                ForEach(allParticles, id: \.id){particle in
+                    Group{
+                        let selected = particle.sprite == vm.selectedParticle?.sprite
+                            Button {
+                                vm.selectedParticle = particle
+                            } label: {
+                                Circle().foregroundColor(.gray)
+                                    .overlay(Image(particle.sprite))
+                                    .overlay(
+                                        Group{
+                                            if selected{
+                                                Circle().stroke(Color.yellow, lineWidth: 3)
+                                            }
+                                        }
+                                    )
+                            }
+                    }
+                        
+                }
+            }
+            .padding(10)
+        }
+        .frame(maxHeight: 100)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
