@@ -8,13 +8,18 @@
 import Foundation
 import SwiftUI
 import Combine
-
+///Список всех партиклов
 let allParticles: [Particle] = [WaterParticle(), FertilizeParticle()]
 
 class GameViewModel: ObservableObject{
+    ///Выбранный партикл
     @Published var selectedParticle: (Particle)? = WaterParticle()
+    ///список активных статусов и их оставшийся процент
     @Published var stats: [String: Double] = [:]
+    
     private var cancellable = Set<AnyCancellable>()
+    
+    ///игровая сцена
     var scene: GameScene = {
         let scene = GameScene()
         
@@ -24,11 +29,14 @@ class GameViewModel: ObservableObject{
     }()
     
     init(){
+        //при выборе партикла вызываем апдейт сцены
         self.$selectedParticle
             .sink { [weak self] _ in
                 self?.update()
             }
             .store(in: &cancellable)
+        
+        //создаем таймер который влияет на статистику
         Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink {[weak self] _ in
@@ -36,6 +44,7 @@ class GameViewModel: ObservableObject{
             }
             .store(in: &cancellable)
         
+        //что делать при смене статистики
         self.$stats
             .sink { _ in
                 self.checkIfNeedUnselect()
@@ -55,6 +64,7 @@ class GameViewModel: ObservableObject{
 //        }
     }
     
+    ///уменьшает значение статуса
     func decrease(){
         for i in stats.map({$0.key}){
             if (stats[i] ?? 0.0) > 0, let particle = allParticles.first(where: {$0.id == i}){
@@ -65,7 +75,7 @@ class GameViewModel: ObservableObject{
         }
     }
     
-    
+    ///при применении партикла добавляет нужное количество процентов в статусы
     func particleWasAdded(_ particle: Particle){
         if (stats[particle.id] ?? 0.0) < 100{
             stats[particle.id] = (stats[particle.id] ?? 0.0) + particle.percentToAddPerParticle
@@ -74,6 +84,7 @@ class GameViewModel: ObservableObject{
         }
     }
     
+    ///обновляет сцену под новые данные(партиклы)
     func update(){
         DispatchQueue.main.async {
             self.scene.particle = self.selectedParticle

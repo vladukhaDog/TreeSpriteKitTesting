@@ -21,7 +21,7 @@ struct WaterParticle: Particle{
     var delayBeforePhysics: Double = 0
     
     var sprite: String = "waterDrop"
-    var restitution: CGFloat = 0.4
+    var restitution: CGFloat = 0.6
     var hasPhysics: Bool = true
     var secondsToDissapear: Double = 0.1
     var spreadMultiplier: Int = 3
