@@ -14,11 +14,22 @@ struct GameView: View {
     
     var body: some View {
         ZStack{
+            VStack{
+                Spacer()
+                 Color(UIColor.brown)
+                     .frame(height: 200)
+                     .overlay(Image("grass").resizable().scaledToFill())
+                     .clipped()
+                     .offset(x: 0, y: -10)
+                     .zIndex(1)
+                     .ignoresSafeArea(.container, edges: .bottom)
+            }
             backgroundScene
             tree
-            if vm.selectedParticle != nil{
-                interactiveScene
-            }
+                .allowsHitTesting(false)
+            interactiveScene
+                .ignoresSafeArea(.container, edges: .top)
+                .allowsHitTesting(vm.selectedParticle != nil)
         }
         .overlay(overlayControls)
         .background(
@@ -40,7 +51,7 @@ struct GameView: View {
                     }
             })
             .blur(radius: 1)
-            .ignoresSafeArea(.container, edges: .top)
+            .ignoresSafeArea(.container, edges: [.top, .bottom])
     }
     private var tree: some View{
         VStack(spacing: 0){
@@ -50,9 +61,8 @@ struct GameView: View {
                 .scaledToFit()
                 .zIndex(2)
                 .offset(x: 0, y: 10)
-            Color(UIColor.brown)
+            Color.clear
                 .frame(height: 200)
-                .overlay(Image("grass").resizable().scaledToFill())
                 .clipped()
                 .offset(x: 0, y: -10)
                 .zIndex(1)
@@ -82,8 +92,9 @@ struct GameView: View {
             }
             .animation(.default, value: vm.stats)
             .padding()
-            Spacer()
             touchParticleSelector
+            Spacer()
+            
         }
     }
     
@@ -150,22 +161,26 @@ struct GameView: View {
     }
     
     private var touchParticleSelector: some View{
-        ScrollView(.horizontal){
+        
             HStack{
                 ForEach(allParticles, id: \.id){particle in
                     Group{
                         let selected = particle.sprite == vm.selectedParticle?.sprite
                         Button {
-                            vm.selectedParticle = particle
+                            if vm.selectedParticle?.id == particle.id{
+                                vm.selectedParticle = nil
+                            }else{
+                                vm.selectedParticle = particle
+                            }
                         } label: {
                             Image(particle.sprite).resizable().scaledToFit().padding(8)
                                 .background(
                                     Group{
                                         
-                                            Circle().fill(Color.white)
-                                                .blur(radius: 2)
-                                                .shadow(radius: 6)
-                                                .opacity(selected ? 1 : 0)
+                                        Circle().fill(Color.white)
+                                            .blur(radius: 2)
+                                            .shadow(radius: 6)
+                                            .opacity(selected ? 1 : 0)
                                         
                                     }
                                 )
@@ -174,14 +189,10 @@ struct GameView: View {
                     .frame(width: 60,height: 60)
                     
                 }
+                Spacer()
             }
             .padding(10)
-        }
-        .cornerRadius(30)
-        .background(Color(UIColor.white).cornerRadius(30)
-            .ignoresSafeArea(.container, edges: .bottom)
-            .opacity(0.95)
-            )
+        
         
     }
 }

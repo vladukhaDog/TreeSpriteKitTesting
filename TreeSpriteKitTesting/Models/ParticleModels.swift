@@ -59,11 +59,12 @@ struct LeafParticle: Particle{
     var size: CGSize = .init(width: 30, height: 30)
     
     var barColor: Color = .clear
-    
+    var restitution: CGFloat = 0
     var percentToAddPerParticle: Double = 0.0
     var maxAmount: Int = 1
     var percentToRemovePerSecond: Double = 0.0
     var collidesWithOtherParticles: Bool = false
+    var physicsSizeMultiplier: Double = 0.7
     
 }
 
